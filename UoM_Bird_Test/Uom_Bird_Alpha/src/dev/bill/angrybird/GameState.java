@@ -1,6 +1,7 @@
 package dev.bill.angrybird;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -66,8 +67,6 @@ public class GameState extends State{
 
         g.drawImage(b1.getBackground(), b1.getX(), 0, null);
         g.drawImage(b2.getBackground(), b2.getX() + b1.getBackground().getWidth() - 1, 0, null);
-
-
         g.drawImage(Assets.bird, bird.getX(), bird.getY(), null);
 
         for(Pipe p: pipes){

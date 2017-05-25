@@ -39,7 +39,10 @@ public class Bird {
             pressed = true;
         }
 
-        if(!KeyInput.jump) pressed = false;
+        if(!KeyInput.jump){
+        	
+        	pressed = false;
+        }
 
         /**
          * Keeps the bird from going under the screen

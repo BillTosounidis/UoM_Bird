@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Bill on 03-May-17.
@@ -38,6 +39,7 @@ public class MenuState extends State {
     public void update() {
 
         bird.menuUpdate();
+        
     }
 
     @Override
@@ -45,9 +47,8 @@ public class MenuState extends State {
 
         g.drawImage(Assets.backgroundDay, 0, 0, null);
         g.drawImage(Assets.title, 100, 100, null);
-        g.drawImage(Assets.bird, bird.getX(), bird.getY(), null);
         g.drawImage(Assets.playButton, 125, 350, null);
-        
+        g.drawImage(Assets.bird, bird.getX(), bird.getY(), null);
         g.setColor(Color.YELLOW);
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
     	g.drawString("FPS: "+Long.toString(updates), 0, 20);
