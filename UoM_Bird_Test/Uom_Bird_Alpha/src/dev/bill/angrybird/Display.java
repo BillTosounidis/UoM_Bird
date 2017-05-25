@@ -13,7 +13,7 @@ public class Display {
     private Canvas canvas;
     private BufferedImage frameIcon;
 
-    private final String title = "Flappy Bird - Pre Alpha 0.0.1";
+    private final String title = "UoM Bird - Pre Alpha 0.0.1";
     public static final int WIDTH = 400;
     public static final int HEIGHT = 600;
 
