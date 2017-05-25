@@ -1,38 +1,25 @@
 package dev.bill.angrybird;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 
 /**
  * Created by Bill on 03-May-17.
+ * 
+ * This class represents the main menu of the game. Provides functionality to start the game.
+ * Each time the player loses he returns to this state.
  */
 public class MenuState extends State {
 
-    private JButton playButton;
-    private ImageIcon playIcon;
-    private Display display;
     private Bird bird;
     private static long updates;
     private int score = 0;
+    private int highscore = 0;
 
-    public MenuState(Display d){
+    public MenuState(){
 
-        display = d;
         bird = new Bird();
-       //setUpButton();
-    }
-
-    private void setUpButton(){
-
-        playButton = new JButton();
-        playIcon = new ImageIcon(Assets.playButton);
-        playButton.setIcon(playIcon);
-        playButton.setBorderPainted(false);
-        playButton.setContentAreaFilled(false);
-        playButton.setOpaque(false);
     }
 
     @Override
@@ -53,11 +40,15 @@ public class MenuState extends State {
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
     	g.drawString("FPS: "+Long.toString(updates), 0, 20);
     	g.drawString("Last Score: "+Integer.toString(score), 143, 500);
+    	g.drawString("High Score: "+Integer.toString(highscore), 141, 530);
 
     }
     
     public void setScore(int s){
     	score = s;
+    	if(score > highscore){
+    		highscore = score;
+    	}
     }
     
     public void setUpdates(long u){

@@ -37,17 +37,26 @@ public class Game implements Runnable{
         display.getCanvas().addMouseListener(m);
         display.getFrame().addKeyListener(k);
         gameState = new GameState();
-        menuState = new MenuState(display);
+        menuState = new MenuState();
         State.setCurrentState(menuState);
 
     }
 
+    /**
+     * Runs the update method of the current state.
+     */
     public void update(){
 
         if(State.getCurrentState() != null)
             State.getCurrentState().update();
     }
 
+    /**
+     * Takes the render method of the current state and runs it.
+     * Also sets the buffer strategy which is important for the game
+     * to run smooth (2-4 is acceptable, anything else makes the game
+     * laggy)
+     */
     public void render(){
 
         bs = display.getCanvas().getBufferStrategy();
@@ -71,6 +80,10 @@ public class Game implements Runnable{
         g.dispose();
     }
 
+    /**
+     * This is the gameloop of the game. It is set so that it runs in 60 frames
+     * per second. This is checked by the variable delta.
+     */
     public void run(){
 
         init();

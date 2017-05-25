@@ -5,10 +5,10 @@ package dev.bill.angrybird;
  */
 public class Bird {
 
-    private int y;
-    private int x;
+    private int y;									//Vertical position of the bird in the screen
+    private int x;									//Horizontal position of the bird in the screen
     private final double gravity = 1.2;             //force that pulls the bird downwards
-    private double velocity = 0;                    //the speed at which the bird moves
+    private double velocity = 0;                    //the speed at which the bird moves (upwards or downwards)
     private double lift = -27;                      //force at which the bird is pulled upwards when 'SPACE' is pressed
     private boolean pressed;                        //helps with key pressed bug
 
@@ -64,6 +64,10 @@ public class Bird {
         }
     }
 
+    /**
+     * This method is used in the menu state to keep the bird at
+     * a fixed position.
+     */
     public void menuUpdate(){
 
         velocity += gravity/2;
@@ -85,6 +89,9 @@ public class Bird {
         return y;
     }
     
+    /**
+     * Resets the bird to it's initial position
+     */
     public void resetBird(){
     	
     	x = (Display.WIDTH - Assets.bird.getWidth()) / 2 - 60;

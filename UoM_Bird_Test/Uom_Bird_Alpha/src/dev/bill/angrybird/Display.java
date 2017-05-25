@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by Bill on 02-May-17.
+ * 
+ * This class is the display frame of the game. Other than the frame and the canvas,
+ * nothing else takes place in this class.
  */
 public class Display {
 

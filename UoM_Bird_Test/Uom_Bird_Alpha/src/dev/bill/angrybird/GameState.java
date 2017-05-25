@@ -1,7 +1,6 @@
 package dev.bill.angrybird;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -10,10 +9,10 @@ import java.util.ArrayList;
 public class GameState extends State{
 
     private Bird bird;
-    private static ArrayList<Pipe> pipes;
-    private static Background[] bg;
-    private Background b1 = new Background();
-    private Background b2 = new Background();
+    private static ArrayList<Pipe> pipes;		//A list of the on-screen pipes
+    private static Background[] bg;				//An array for the 2 background images required for the animation cycle
+    private Background b1 = new Background();	//First background image
+    private Background b2 = new Background();	//Second background image
     private static long updates;
     private static int count = 0;
     private int score = 0;
@@ -32,14 +31,27 @@ public class GameState extends State{
         bird.update();
 
         for(int i = 0; i < pipes.size(); i++){
-            pipes.get(i).update();
+            
+        	pipes.get(i).update();
 
 
+            /**
+             * Checks if the pipe is off the screen.
+             * If it is, then it gets removed from the list
+             * so that there are no potential memory issues.
+             */
             if(pipes.get(i).isOffscreen()){
             	
             	pipes.remove(i);
             }	
             
+            /**
+             * Checks if the bird hits a pipe.
+             * If it does the state is set to menu,
+             * the bird resets to initial position
+             * and the pipes list gets cleared of
+             * any pipes.
+             */
             if(pipes.get(i).collision(bird)){
             	
             	Game.menuState.setScore(score);
@@ -49,6 +61,10 @@ public class GameState extends State{
             	bird.resetBird();
             }
             
+            /**
+             * Checks if the pipe has passed the bird.
+             * If it did then the score gets updated.
+             */
             else if(pipes.get(i).passed(bird))
             	score++;
         }
