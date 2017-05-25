@@ -12,7 +12,7 @@ public class Pipe {
     private int bottom;                                            //lower pipe
     private int x = Display.WIDTH;                                 //pipe starting point
     private int speed = 2;                                         //horizontal speed
-    private int w = 20;                                            //width of pipes
+    private int w = 80;                                            //width of pipes
 
 
 
