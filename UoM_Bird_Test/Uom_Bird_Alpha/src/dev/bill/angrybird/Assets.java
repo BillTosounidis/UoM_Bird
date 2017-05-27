@@ -18,7 +18,7 @@ public class Assets {
 
     public void cropAssets(){
 
-        backgroundNight = sprite.getSubimage(0,0, 400, 600);
+        //backgroundNight = sprite.getSubimage(0,0, 400, 600);
         backgroundDay = sprite.getSubimage(402, 0, 400, 600);
         ground = sprite.getSubimage(394, 602, 400, 133);
         topPipe = sprite.getSubimage(804, 0, 59, 600);

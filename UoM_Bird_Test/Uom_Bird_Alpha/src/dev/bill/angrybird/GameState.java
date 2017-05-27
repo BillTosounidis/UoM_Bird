@@ -11,17 +11,21 @@ public class GameState extends State{
     private Bird bird;
     private static ArrayList<Pipe> pipes;		//A list of the on-screen pipes
     private static Background[] bg;				//An array for the 2 background images required for the animation cycle
+    private static Ground[] g;
     private Background b1 = new Background();	//First background image
     private Background b2 = new Background();	//Second background image
     private static long updates;
     private static int count = 0;
     private int score = 0;
+    private Ground ground1 = new Ground();
+    private Ground ground2 = new Ground();
 
     public GameState(){
 
         bird = new Bird();
         pipes = new ArrayList<Pipe>();
         bg = new Background[]{b1, b2};
+        g = new Ground[]{ground1, ground2};
 
     }
 
@@ -29,7 +33,7 @@ public class GameState extends State{
     public void update() {
 
         bird.update();
-
+        
         for(int i = 0; i < pipes.size(); i++){
             
         	pipes.get(i).update();
@@ -69,9 +73,16 @@ public class GameState extends State{
             	score++;
         }
 
+        for(int i = 0; i < g.length; i++){
+        	
+        	g[i].update();
+        	
+        	if(g[i].isOffscreen()) g[i].resetX();
+        }
 
         for(int j = 0; j < bg.length; j++){
-            bg[j].update();
+            
+        	bg[j].update();
 
             if(bg[j].isOffscreen()) bg[j].resetX();
         }
@@ -80,24 +91,51 @@ public class GameState extends State{
     @Override
     public void render(Graphics g) {
     	
-
+    	//Drawing the background image moving animation
+    	
         g.drawImage(b1.getBackground(), b1.getX(), 0, null);
         g.drawImage(b2.getBackground(), b2.getX() + b1.getBackground().getWidth() - 1, 0, null);
+        
+        //End drawing the background image moving animation
+        
+        
+        //Drawing the bird
+        
         g.drawImage(Assets.bird, bird.getX(), bird.getY(), null);
-
+        
+        //End drawing the bird
+        
+        
+        //Drawing the ground image moving animation
+        
+        g.drawImage(ground1.getGround(), ground1.getX(), ground1.getY(), null);
+        g.drawImage(ground2.getGround(), ground2.getX() + ground1.getGround().getWidth() - 1, ground2.getY(), null);
+        
+        //End drawing the ground image moving animation
+        
+        
+        //Drawing the pipes
+        
         for(Pipe p: pipes){
 
             g.setColor(Color.DARK_GRAY);
             g.fillRect(p.getX(), 0, p.getW(), p.getTop());
-            g.fillRect(p.getX(), Display.HEIGHT - p.getBottom(), p.getW(), p.getBottom());
+            g.fillRect(p.getX(), p.getGround() - p.getBottom(), p.getW(), p.getBottom());
 
         }
+        
+        //End drawing the pipes
+        
+        
+        //Drawing the FPS counter
         
         g.setColor(Color.YELLOW);
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
     	g.drawString("FPS: "+Long.toString(updates), 0, 20);
     	g.setColor(Color.GREEN);
     	g.drawString("Score: "+Integer.toString(score), 0, 50);
+    	
+    	//End drawing the FPS counter
 
     }
     

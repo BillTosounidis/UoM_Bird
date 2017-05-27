@@ -33,14 +33,16 @@ public class MenuState extends State {
     public void render(Graphics g) {
 
         g.drawImage(Assets.backgroundDay, 0, 0, null);
+        g.drawImage(Assets.ground, 0, Display.HEIGHT - Assets.ground.getHeight(), null);
         g.drawImage(Assets.title, 100, 100, null);
         g.drawImage(Assets.playButton, 125, 350, null);
         g.drawImage(Assets.bird, bird.getX(), bird.getY(), null);
         g.setColor(Color.YELLOW);
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
     	g.drawString("FPS: "+Long.toString(updates), 0, 20);
-    	g.drawString("Last Score: "+Integer.toString(score), 143, 500);
-    	g.drawString("High Score: "+Integer.toString(highscore), 141, 530);
+    	g.setColor(Color.BLUE);
+    	g.drawString("Last Score: "+Integer.toString(score), 143, 520);
+    	g.drawString("High Score: "+Integer.toString(highscore), 141, 550);
 
     }
     

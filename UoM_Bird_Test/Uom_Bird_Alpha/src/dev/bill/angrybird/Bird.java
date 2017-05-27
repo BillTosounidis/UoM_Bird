@@ -28,6 +28,7 @@ public class Bird {
 
         /**
          * eliminates continuous key pressing bug
+         * if not for this holding down 'Space' would make the bird go up non-stop
          */
         if(KeyInput.jump){
 

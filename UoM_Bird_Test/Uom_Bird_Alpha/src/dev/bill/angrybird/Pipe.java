@@ -16,16 +16,17 @@ public class Pipe {
     private int x = Display.WIDTH;                                 //pipe starting point
     private int speed = 2;                                         //horizontal speed
     private int w = 80;                                            //width of pipes
+    private int ground = Display.HEIGHT - Assets.ground.getHeight();
 
 
 
     public Pipe(){
 
     	//Pipes get random height but this ensures they always have 150px between them
-        while(top + bottom != Display.HEIGHT - 150){
+        while(top + bottom != ground - 150){
 
-            top = rand.nextInt(Display.HEIGHT);
-            bottom = rand.nextInt(Display.HEIGHT);
+            top = rand.nextInt(ground);
+            bottom = rand.nextInt(ground);
         }
 
     }
@@ -75,6 +76,10 @@ public class Pipe {
     public int getW(){
         return w;
     }
+    
+    public int getGround(){
+    	return ground;
+    }
 
     /**
      * This method checks if the bird collides with any of the pipes(top or bottom)
@@ -84,7 +89,7 @@ public class Pipe {
      */
     public boolean collision(Bird b){
 
-        if(b.getY() < top || b.getY() > Display.HEIGHT - bottom) {
+        if(b.getY() < top || b.getY() > ground - bottom) {
 
             if (b.getX() + Assets.bird.getWidth() > x && b.getX() + Assets.bird.getWidth()< x + w) {
 

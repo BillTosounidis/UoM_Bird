@@ -88,8 +88,8 @@ public class Game implements Runnable{
 
         init();
 
-        int fps = 60;
-        double timePerUpdate = 1000000000 / fps;
+        int fps = 60;								//Desired fps of the game
+        double timePerUpdate = 1000000000 / fps;	//The time per update is 1s/60fps
         double delta = 0;
         long now;
         long lastTime = System.nanoTime();
@@ -114,7 +114,6 @@ public class Game implements Runnable{
 
             if(timer >= 1000000000){
 
-                //System.out.println("FPS: " + updates);
                 State.getCurrentState().setUpdates(updates);
                 if(State.getCurrentState() == gameState) GameState.addToPipes();
                 updates = 0;
