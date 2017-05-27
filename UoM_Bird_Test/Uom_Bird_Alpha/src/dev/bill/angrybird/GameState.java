@@ -104,6 +104,18 @@ public class GameState extends State{
         g.drawImage(Assets.bird, bird.getX(), bird.getY(), null);
         
         //End drawing the bird
+                
+
+        //Drawing the pipes
+        
+        for(Pipe p: pipes){
+
+        	g.drawImage(Assets.topPipe, p.getX(), p.getTop() - Display.HEIGHT, null);
+        	g.drawImage(Assets.bottomPipe, p.getX(), p.getGround() - p.getBottom(), null);
+
+        }
+        
+        //End drawing the pipes
         
         
         //Drawing the ground image moving animation
@@ -112,19 +124,6 @@ public class GameState extends State{
         g.drawImage(ground2.getGround(), ground2.getX() + ground1.getGround().getWidth() - 1, ground2.getY(), null);
         
         //End drawing the ground image moving animation
-        
-        
-        //Drawing the pipes
-        
-        for(Pipe p: pipes){
-
-            g.setColor(Color.DARK_GRAY);
-            g.fillRect(p.getX(), 0, p.getW(), p.getTop());
-            g.fillRect(p.getX(), p.getGround() - p.getBottom(), p.getW(), p.getBottom());
-
-        }
-        
-        //End drawing the pipes
         
         
         //Drawing the FPS counter
