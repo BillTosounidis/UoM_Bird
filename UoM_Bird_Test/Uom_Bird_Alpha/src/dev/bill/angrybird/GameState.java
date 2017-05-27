@@ -11,14 +11,15 @@ public class GameState extends State{
     private Bird bird;
     private static ArrayList<Pipe> pipes;		//A list of the on-screen pipes
     private static Background[] bg;				//An array for the 2 background images required for the animation cycle
-    private static Ground[] g;
+    private static Ground[] g;					//An array for the 2 ground images required for the animation cycle
     private Background b1 = new Background();	//First background image
     private Background b2 = new Background();	//Second background image
-    private static long updates;
+    private Ground ground1 = new Ground();		//First ground image
+    private Ground ground2 = new Ground();		//Second ground image
+    private static long updates;				//The game state needs the updates per second so that a pipe is added every 2 seconds
     private static int count = 0;
     private int score = 0;
-    private Ground ground1 = new Ground();
-    private Ground ground2 = new Ground();
+    
 
     public GameState(){
 
@@ -56,11 +57,11 @@ public class GameState extends State{
              * and the pipes list gets cleared of
              * any pipes.
              */
-            if(pipes.get(i).collision(bird)){
+            if(pipes.get(i).collision(bird) || bird.touchedGround()){
             	
             	Game.menuState.setScore(score);
             	score = 0;
-            	State.setCurrentState(Game.menuState);//System.out.println("HIT!");
+            	State.setCurrentState(Game.menuState);
             	pipes.clear();
             	bird.resetBird();
             }
@@ -73,18 +74,13 @@ public class GameState extends State{
             	score++;
         }
 
-        for(int i = 0; i < g.length; i++){
+        for(int i = 0; i < 2; i++){
         	
         	g[i].update();
+        	bg[i].update();
         	
         	if(g[i].isOffscreen()) g[i].resetX();
-        }
-
-        for(int j = 0; j < bg.length; j++){
-            
-        	bg[j].update();
-
-            if(bg[j].isOffscreen()) bg[j].resetX();
+        	if(bg[i].isOffscreen()) bg[i].resetX();
         }
     }
 

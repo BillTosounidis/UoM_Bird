@@ -9,7 +9,7 @@ public class Bird {
     private int x;									//Horizontal position of the bird in the screen
     private final double gravity = 1.2;             //force that pulls the bird downwards
     private double velocity = 0;                    //the speed at which the bird moves (upwards or downwards)
-    private double lift = -27;                      //force at which the bird is pulled upwards when 'SPACE' is pressed
+    private double lift = -25;                      //force at which the bird is pulled upwards when 'SPACE' is pressed
     private boolean pressed;                        //helps with key pressed bug
 
     public Bird(){
@@ -46,16 +46,6 @@ public class Bird {
         }
 
         /**
-         * Keeps the bird from going under the screen
-         * Makes bounce animation to show that you lost
-         */
-        if(y >= Display.HEIGHT){
-
-            y = Display.HEIGHT;
-            velocity = -25;
-        }
-
-        /**
          * Keeps the bird from going over the screen
          */
         if(y <= 0){
@@ -80,6 +70,15 @@ public class Bird {
             velocity -= 15;
         }
 
+    }
+    
+    /**
+     * 
+     * @return True if the bird hits the ground.
+     */
+    public boolean touchedGround(){
+    	
+    	return y >= Display.HEIGHT - Assets.ground.getHeight();
     }
 
     public int getX(){

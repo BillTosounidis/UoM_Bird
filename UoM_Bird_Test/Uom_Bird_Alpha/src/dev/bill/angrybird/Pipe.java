@@ -22,8 +22,8 @@ public class Pipe {
 
     public Pipe(){
 
-    	//Pipes get random height but this ensures they always have 150px between them
-        while(top + bottom != ground - 150){
+    	//Pipes get random height but this ensures they always have 130px between them
+        while(top + bottom != ground - 130){
 
             top = rand.nextInt(ground);
             bottom = rand.nextInt(ground);
@@ -89,7 +89,7 @@ public class Pipe {
      */
     public boolean collision(Bird b){
 
-        if(b.getY() < top || b.getY() > ground - bottom) {
+        if(b.getY() < top || (b.getY() > ground - bottom || b.getY() + Assets.bird.getHeight() > ground - bottom)) {
 
             if (b.getX() + Assets.bird.getWidth() > x && b.getX() + Assets.bird.getWidth()< x + w) {
 
